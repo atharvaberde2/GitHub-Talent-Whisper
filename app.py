@@ -30,7 +30,7 @@ app = Flask(__name__)
 CORS(app)
 
 # API Configuration
-GITHUB_TOKEN = "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"
+GITHUB_TOKEN = "******"
 GITHUB_HEADERS = {
     "Authorization": f"Bearer {GITHUB_TOKEN}",
     "Accept": "application/vnd.github.v3+json",
@@ -38,8 +38,7 @@ GITHUB_HEADERS = {
 }
 
 # OpenAI Configuration
-OPENAI_API_KEY = "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"  # Replace with your OpenAI API key
-openai.api_key = OPENAI_API_KEY
+OPENAI_API_KEY = "****"
 
 # GitHub GraphQL Configuration
 GITHUB_GRAPHQL_URL = "https://api.github.com/graphql"
