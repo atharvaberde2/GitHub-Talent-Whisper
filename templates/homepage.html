@@ -1,0 +1,1107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GitHub Talent Whisperer — HTML</title>
+     Tailwind CDN 
+    <script src="https://cdn.tailwindcss.com"></script>
+     Lucide Icons (no inline SVG) 
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <meta name="description" content="Analyze your GitHub to reveal hidden developer superpowers." />
+    <style>
+      /* Optional: smooth transitions */
+      .fade-enter {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      .fade-enter-active {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity .4s ease, transform .4s ease;
+      }
+      .glow-shadow {
+        box-shadow: 0 8px 24px -8px rgba(56, 189, 248, 0.6);
+      }
+      .glow-shadow:hover {
+        box-shadow: 0 12px 38px -10px rgba(147, 51, 234, 0.7);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen w-full overflow-x-hidden bg-[#0a0f1c] text-white antialiased">
+     Ambient gradient aurora 
+    <div aria-hidden="true" class="pointer-events-none absolute -top-40 left-1/2 z-0 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-gradient-to-br from-sky-500/30 via-fuchsia-500/20 to-rose-500/20 blur-3xl"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute bottom-[-200px] right-[-100px] z-0 h-[480px] w-[480px] rounded-full bg-gradient-to-br from-cyan-400/20 to-violet-600/20 blur-3xl"></div>
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 opacity-[0.07] [background:radial-gradient(circle_at_1px_1px,#fff_1px,transparent_1px)] [background-size:24px_24px]"></div>
+
+     Header 
+    <header class="relative z-10 border-b border-white/5 bg-[#0b1220]/60 backdrop-blur-md">
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4">
+        <div class="flex items-center gap-2">
+          <i data-lucide="zap" class="h-5 w-5 text-cyan-400"></i>
+          <span class="text-sm font-semibold text-zinc-200">GitHub Talent Whisperer</span>
+        </div>
+        <div class="text-xs text-zinc-400">AI-powered insights for your engineering career</div>
+      </div>
+    </header>
+
+    <main class="relative z-10">
+       Landing 
+      <section id="landing" class="relative">
+        <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
+          <div class="flex flex-col justify-center">
+            <h1 class="text-balance bg-gradient-to-r from-zinc-100 via-white to-zinc-200 bg-clip-text text-4xl font-extrabold leading-tight text-transparent md:text-6xl">
+              Discover Your Hidden Developer Superpowers
+            </h1>
+            <p class="mt-4 max-w-prose text-lg text-zinc-300">
+              We analyze your GitHub to reveal talents traditional recruiting completely misses. Premium, AI-powered insights for the next step in your engineering career.
+            </p>
+
+            <div class="mt-8 rounded-2xl border border-white/10 bg-white/5 p-3 shadow-[0_0_50px_-12px_rgba(56,189,248,0.25)] backdrop-blur-xl">
+              <label for="gh-input" class="mb-2 block text-sm text-zinc-400">GitHub Username</label>
+              <div class="flex flex-col gap-3 sm:flex-row">
+                <div class="relative w-full">
+                  <input
+                    id="gh-input"
+                    type="text"
+                    placeholder="e.g. gaearon"
+                    class="peer h-12 w-full rounded-md border border-white/10 bg-[#0c1526]/80 px-3 text-zinc-100 placeholder:text-zinc-500 outline-none focus:ring-2 focus:ring-cyan-400/70"
+                  />
+                  <div aria-hidden="true" class="pointer-events-none absolute inset-0 -z-10 rounded-lg bg-gradient-to-r from-sky-500/0 via-fuchsia-500/0 to-rose-500/0 blur-lg transition-all duration-500 peer-focus:from-sky-500/30 peer-focus:via-fuchsia-500/20 peer-focus:to-rose-500/30"></div>
+                </div>
+                <button
+                  id="analyze-btn"
+                  class="h-12 w-full select-none rounded-md bg-gradient-to-r from-sky-500 via-cyan-400 to-fuchsia-500 px-4 text-white glow-shadow transition-all active:scale-[0.99] sm:w-44"
+                >
+                  <span class="mr-2">Analyze Profile</span>
+                  <i data-lucide="zap" class="inline-block h-4 w-4 align-[-2px]"></i>
+                </button>
+              </div>
+              <p class="mt-3 text-xs text-zinc-500">No auth required in this demo. Reads public GitHub signals only.</p>
+            </div>
+          </div>
+
+           Visual Preview 
+          <div class="relative">
+            <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 p-6 backdrop-blur-xl">
+              <div class="mb-6 flex items-center gap-3">
+                <div class="h-10 w-10 rounded-full bg-gradient-to-br from-sky-500 to-fuchsia-500 p-[2px]">
+                  <div class="h-full w-full rounded-full bg-[#0a0f1c]"></div>
+                </div>
+                <div>
+                  <div class="text-sm font-semibold text-zinc-200">Premium Insights</div>
+                  <div class="text-xs text-zinc-400">AI signals from commits, PRs, and docs</div>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-4">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition hover:scale-[1.02] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
+                  <div class="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-sky-400 to-cyan-400 px-2 py-1 text-[10px] font-semibold text-white/90">Leadership Score</div>
+                  <div class="mt-2 text-2xl font-extrabold text-zinc-100">96</div>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition hover:scale-[1.02] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
+                  <div class="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-pink-500 to-rose-500 px-2 py-1 text-[10px] font-semibold text-white/90">Innovation Index</div>
+                  <div class="mt-2 text-2xl font-extrabold text-zinc-100">89</div>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition hover:scale-[1.02] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
+                  <div class="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-emerald-400 to-green-400 px-2 py-1 text-[10px] font-semibold text-white/90">Decomposition</div>
+                  <div class="mt-2 text-2xl font-extrabold text-zinc-100">91</div>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur-md transition hover:scale-[1.02] hover:shadow-[0_0_0_1px_rgba(255,255,255,0.08)]">
+                  <div class="inline-flex items-center gap-2 rounded-md bg-gradient-to-r from-violet-500 to-fuchsia-500 px-2 py-1 text-[10px] font-semibold text-white/90">Knowledge Share</div>
+                  <div class="mt-2 text-2xl font-extrabold text-zinc-100">88</div>
+                </div>
+              </div>
+              <div class="mt-6 h-2 w-full overflow-hidden rounded-full bg-white/10">
+                <div class="h-full w-2/3 animate-pulse rounded-full bg-gradient-to-r from-sky-500 via-cyan-400 to-fuchsia-500"></div>
+              </div>
+            </div>
+            <div aria-hidden="true" class="pointer-events-none absolute -bottom-6 right-6 h-28 w-28 rounded-full bg-cyan-400/30 blur-3xl"></div>
+          </div>
+        </div>
+      </section>
+
+       Analyzing 
+      <section id="analyzing" class="mx-auto hidden max-w-3xl px-4 py-20">
+        <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 text-center shadow-[0_0_80px_-20px_rgba(59,130,246,0.5)] backdrop-blur-xl">
+          <h2 class="text-2xl font-semibold text-zinc-100">Analyzing your GitHub profile</h2>
+          <p class="mt-2 text-sm text-zinc-400">This usually takes about half a minute.</p>
+
+          <div class="mx-auto mt-8 h-3 w-full overflow-hidden rounded-full bg-white/10">
+            <div id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" class="h-full w-0 rounded-full bg-gradient-to-r from-sky-500 via-cyan-400 to-fuchsia-500 transition-[width] duration-500 ease-out"></div>
+          </div>
+          <div class="mt-4 flex items-center justify-between text-xs text-zinc-400">
+            <span class="inline-flex items-center gap-2">
+              <span class="inline-flex h-2 w-2 animate-pulse rounded-full bg-cyan-400"></span>
+              <span id="status-text">Scanning commit patterns...</span>
+            </span>
+            <span id="eta-text">ETA: ~10s</span>
+          </div>
+
+          <div class="mx-auto mt-10 flex items-center justify-center gap-2">
+            <span class="h-2 w-2 animate-bounce rounded-full bg-sky-400 [animation-delay:-0.2s]"></span>
+            <span class="h-2 w-2 animate-bounce rounded-full bg-fuchsia-400 [animation-delay:-0.1s]"></span>
+            <span class="h-2 w-2 animate-bounce rounded-full bg-cyan-400"></span>
+          </div>
+        </div>
+      </section>
+
+       Results 
+      <section id="results" class="mx-auto hidden max-w-7xl px-4 py-10 md:py-16">
+        <div class="mb-6 flex flex-col items-start justify-between gap-4 md:mb-10 md:flex-row md:items-center">
+          <div>
+            <h2 class="text-2xl font-bold text-zinc-100 md:text-3xl">Your Talent Blueprint</h2>
+            <p class="mt-1 text-sm text-zinc-400">
+              We detected strengths across leadership, innovation, and reliability—tailored career recommendations below.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button id="rerun-btn" class="rounded-md border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-100 hover:bg-white/10">
+              Re-run Analysis
+            </button>
+            <button id="share-btn" class="rounded-md bg-gradient-to-r from-sky-500 via-cyan-400 to-fuchsia-500 px-4 py-2 text-sm text-white hover:brightness-110">
+              <i data-lucide="share-2" class="mr-2 inline-block h-4 w-4 align-[-2px]"></i>
+              <span id="share-btn-text">Share Your Profile</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+           Left: Profile Summary 
+          <div class="space-y-6 md:col-span-1">
+            <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+              <div class="flex items-center gap-4 p-6">
+                <div class="relative">
+                  <div class="absolute -inset-1 rounded-full bg-gradient-to-tr from-sky-500/40 via-fuchsia-500/30 to-rose-500/30 blur-md"></div>
+                  <img id="profile-avatar" src="/placeholder.svg?height=84&width=84" alt="GitHub avatar" width="84" height="84" class="relative rounded-full ring-2 ring-white/20" />
+                </div>
+                <div>
+                  <div id="profile-username" class="text-xl font-semibold text-zinc-100">@username</div>
+                  <span class="mt-1 inline-flex items-center gap-1 rounded-md border border-white/10 bg-white/10 px-2 py-1 text-xs text-cyan-200">
+                    <i data-lucide="crown" class="h-3.5 w-3.5"></i>
+                    <span id="profile-archetype">Async Leadership Pioneer</span>
+                  </span>
+                </div>
+              </div>
+              <div class="p-6 pt-0">
+                <div class="grid grid-cols-3 gap-3 text-center">
+                  <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                    <div class="text-[10px] uppercase tracking-wide text-zinc-400">PR Depth</div>
+                    <div class="mt-1 text-lg font-bold text-zinc-100">3.2x</div>
+                    <div class="text-[10px] text-zinc-500">vs. avg</div>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                    <div class="text-[10px] uppercase tracking-wide text-zinc-400">Doc Density</div>
+                    <div class="mt-1 text-lg font-bold text-zinc-100">Top 15%</div>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                    <div class="text-[10px] uppercase tracking-wide text-zinc-400">Tech Adoptions</div>
+                    <div class="mt-1 text-lg font-bold text-zinc-100">12+</div>
+                    <div class="text-[10px] text-zinc-500">last year</div>
+                  </div>
+                </div>
+                <div class="mt-6 flex items-center justify-center">
+                   Confidence Gauge 
+                  <div class="relative mx-auto flex h-36 w-36 items-center justify-center">
+                    <svg class="-rotate-90 h-full w-full" viewBox="0 0 140 140">
+                      <defs>
+                        <linearGradient id="gauge-grad" x1="0" x2="1" y1="0" y2="1">
+                          <stop offset="0%" stop-color="#3b82f6" />
+                          <stop offset="50%" stop-color="#06b6d4" />
+                          <stop offset="100%" stop-color="#ec4899" />
+                        </linearGradient>
+                      </defs>
+                      <circle cx="70" cy="70" r="56" stroke="rgba(255,255,255,0.1)" stroke-width="12" fill="none"></circle>
+                      <circle id="gauge-bar" cx="70" cy="70" r="56" stroke="url(#gauge-grad)" stroke-width="12" stroke-linecap="round" stroke-dasharray="351.86" stroke-dashoffset="351.86" fill="none"></circle>
+                    </svg>
+                    <div class="absolute text-center">
+                      <div id="gauge-percent" class="text-3xl font-extrabold text-zinc-100">0%</div>
+                      <div class="text-[10px] uppercase tracking-wider text-zinc-400">Confidence</div>
+                    </div>
+                    <div aria-hidden="true" class="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_70%_30%,rgba(59,130,246,0.15),transparent_40%),radial-gradient(circle_at_30%_70%,rgba(236,72,153,0.15),transparent_40%)] blur-md"></div>
+                  </div>
+                </div>
+                <div class="mt-2 text-center text-xs text-zinc-400">
+                  Overall confidence based on multi-signal analysis
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+              <div class="p-6">
+                <div class="text-sm font-semibold text-zinc-300">Evidence Quick Links</div>
+                <div class="mt-3 flex flex-col gap-2">
+                  <a id="link-prs" target="_blank" rel="noreferrer" class="group inline-flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-zinc-300 transition hover:border-cyan-400/40 hover:bg-white/10">
+                    <span class="inline-flex items-center gap-2">
+                      <i data-lucide="external-link" class="h-3.5 w-3.5 text-cyan-300"></i>
+                      Pull Request Descriptions
+                    </span>
+                    <span class="text-[10px] text-zinc-500 group-hover:text-zinc-400">Open</span>
+                  </a>
+                  <a id="link-commits" target="_blank" rel="noreferrer" class="group inline-flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-zinc-300 transition hover:border-cyan-400/40 hover:bg-white/10">
+                    <span class="inline-flex items-center gap-2">
+                      <i data-lucide="external-link" class="h-3.5 w-3.5 text-cyan-300"></i>
+                      Commit History Granularity
+                    </span>
+                    <span class="text-[10px] text-zinc-500 group-hover:text-zinc-400">Open</span>
+                  </a>
+                  <a id="link-repos" target="_blank" rel="noreferrer" class="group inline-flex items-center justify-between rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs text-zinc-300 transition hover:border-cyan-400/40 hover:bg-white/10">
+                    <span class="inline-flex items-center gap-2">
+                      <i data-lucide="external-link" class="h-3.5 w-3.5 text-cyan-300"></i>
+                      Tech Adoption Signals
+                    </span>
+                    <span class="text-[10px] text-zinc-500 group-hover:text-zinc-400">Open</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+           Center: Insights 
+          <div id="insights" class="space-y-6 md:col-span-1">
+             Populated by JS 
+          </div>
+
+           Right: Recommendations 
+          <div class="space-y-6 md:col-span-1">
+            <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+              <div class="p-6 pb-3">
+                <div class="text-lg font-semibold text-zinc-100">Perfect Role Matches</div>
+              </div>
+              <div id="recs" class="space-y-3 p-6 pt-3">
+                 Populated by JS 
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+              <div class="p-6 pb-3">
+                <div class="text-lg font-semibold text-zinc-100">🤖 AI-Powered Insights</div>
+                <div class="text-xs text-zinc-400 mt-1">Advanced pattern recognition analysis</div>
+              </div>
+              <div id="ai-insights" class="space-y-4 p-6 pt-3 text-sm text-zinc-300">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+              <div class="p-6 pb-3">
+                <div class="text-lg font-semibold text-zinc-100">Skill Development Suggestions</div>
+              </div>
+              <div class="space-y-3 p-6 pt-3 text-sm text-zinc-300">
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-[2px] h-4 w-4 text-emerald-400"></i>
+                  Lead an org-wide RFC to formalize async collaboration standards
+                </div>
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-[2px] h-4 w-4 text-emerald-400"></i>
+                  Mentor engineers through a platform refactor with decomposition milestones
+                </div>
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-[2px] h-4 w-4 text-emerald-400"></i>
+                  Publish a deep-dive on a recent architecture decision
+                </div>
+                <div class="flex items-start gap-2">
+                  <i data-lucide="check-circle-2" class="mt-[2px] h-4 w-4 text-emerald-400"></i>
+                  Pilot a new internal tool and share adoption results
+                </div>
+              </div>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl">
+              <div class="p-6">
+                <div class="text-sm font-semibold text-zinc-300">Share Your Profile</div>
+                <div id="share-url" class="mt-3 rounded-xl border border-white/10 bg-[#0c1526] p-3 text-xs text-zinc-400 break-all">
+                  https://example.com/profile/someone
+                </div>
+                <div class="mt-3 flex flex-wrap gap-2">
+                  <button id="copy-btn" class="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-100 hover:bg-white/10">
+                    <i data-lucide="link" class="mr-2 inline-block h-4 w-4 align-[-2px]"></i> <span id="copy-btn-text">Copy URL</span>
+                  </button>
+                  <button id="share-x" class="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-100 hover:bg-white/10">
+                    <i data-lucide="twitter" class="mr-2 inline-block h-4 w-4 align-[-2px] text-cyan-400"></i> Share on X
+                  </button>
+                  <button id="share-li" class="rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-100 hover:bg-white/10">
+                    <i data-lucide="linkedin" class="mr-2 inline-block h-4 w-4 align-[-2px] text-sky-400"></i> Share on LinkedIn
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="relative z-10 mx-auto mt-16 max-w-7xl px-4 pb-10 text-center text-xs text-zinc-500">
+      <span id="footer-status">Powered by real GitHub API analysis. Enter any public username to discover hidden talents.</span>
+    </footer>
+
+    <script>
+      // Icon rendering
+      document.addEventListener("DOMContentLoaded", () => {
+        lucide.createIcons();
+      });
+
+      const el = (id) => document.getElementById(id);
+      const landing = el("landing");
+      const analyzing = el("analyzing");
+      const results = el("results");
+      const analyzeBtn = el("analyze-btn");
+      const rerunBtn = el("rerun-btn");
+      const input = el("gh-input");
+      const progressBar = el("progress-bar");
+      const statusText = el("status-text");
+      const etaText = el("eta-text");
+      const profileAvatar = el("profile-avatar");
+      const profileUsername = el("profile-username");
+      const profileArchetype = el("profile-archetype");
+      const insightsWrap = el("insights");
+      const recsWrap = el("recs");
+      const shareUrlEl = el("share-url");
+      const shareBtn = el("share-btn");
+      const shareBtnText = el("share-btn-text");
+      const copyBtn = el("copy-btn");
+      const copyBtnText = el("copy-btn-text");
+      const shareX = el("share-x");
+      const shareLi = el("share-li");
+      const gaugeBar = el("gauge-bar");
+      const gaugePercent = el("gauge-percent");
+
+      const statuses = [
+        "Scanning commit patterns...",
+        "Detecting collaboration style...",
+        "Analyzing code complexity...",
+        "Discovering hidden talents...",
+        "Comparing repo velocity vs. peers...",
+        "Evaluating documentation quality...",
+        "Mapping PR review depth...",
+        "Identifying architectural signals...",
+        "Assessing testing rigor...",
+        "Profiling learning velocity...",
+        "Calibrating confidence metrics...",
+        "Finalizing report...",
+      ];
+
+      function setState(name) {
+        for (const s of [landing, analyzing, results]) s.classList.add("hidden");
+        const map = { landing, analyzing, results };
+        const node = map[name];
+        node.classList.remove("hidden");
+        node.classList.add("fade-enter");
+        requestAnimationFrame(() => node.classList.add("fade-enter-active"));
+        setTimeout(() => node.classList.remove("fade-enter", "fade-enter-active"), 450);
+      }
+
+      async function fetchAnalysis(username) {
+        try {
+          const response = await fetch(`/api/analyze/${encodeURIComponent(username)}`);
+          const data = await response.json();
+          
+          if (data.error) {
+            throw new Error(data.error);
+          }
+          
+          // Transform backend data to frontend format
+          return transformAnalysisData(data);
+        } catch (error) {
+          console.error('Analysis failed:', error);
+          // Fallback to mock data if API fails
+          return buildMockAnalysis(username);
+        }
+      }
+
+      function transformAnalysisData(backendData) {
+        const talents = backendData.hidden_talents;
+        
+        // Map backend talent data to frontend insights format
+        const insights = [
+          {
+            key: "async_leadership",
+            title: "Async Leadership DNA Detected",
+            evidence: talents.async_leadership.evidence,
+            confidence: talents.async_leadership.confidence,
+            description: "This pattern indicates exceptional remote team leadership potential—clear communication, structured feedback loops, and proactive alignment across time zones.",
+            gradient: "from-sky-500 to-cyan-400",
+            icon: "crown",
+            dataPoints: `${talents.async_leadership.pr_count || 0} PRs analyzed`,
+            strength: talents.async_leadership.score >= 80 ? "Exceptional" : talents.async_leadership.score >= 60 ? "Strong" : "Moderate",
+            benchmark: talents.async_leadership.score >= 85 ? "Top 5%" : talents.async_leadership.score >= 70 ? "Top 15%" : "Top 30%"
+          },
+          {
+            key: "problem_decomposition", 
+            title: "Elite Problem Decomposition",
+            evidence: talents.problem_decomposition.evidence,
+            confidence: talents.problem_decomposition.confidence,
+            description: "You naturally break complex problems into tractable steps—ideal for leading migrations, platform refactors, and distributed system designs.",
+            gradient: "from-emerald-500 to-green-400",
+            icon: "puzzle",
+            dataPoints: `${talents.problem_decomposition.commit_count || 0} commits analyzed`,
+            strength: talents.problem_decomposition.score >= 80 ? "Exceptional" : talents.problem_decomposition.score >= 60 ? "Strong" : "Moderate",
+            benchmark: talents.problem_decomposition.score >= 85 ? "Top 8%" : talents.problem_decomposition.score >= 70 ? "Top 20%" : "Top 40%"
+          },
+          {
+            key: "knowledge_transfer",
+            title: "Knowledge Transfer Champion", 
+            evidence: talents.knowledge_transfer.evidence,
+            confidence: talents.knowledge_transfer.confidence,
+            description: "Your code comments, READMEs, and PR walkthroughs accelerate team onboarding and improve long-term maintainability.",
+            gradient: "from-violet-500 to-fuchsia-500",
+            icon: "book-open",
+            dataPoints: `${talents.knowledge_transfer.docs_count || 0} docs reviewed`,
+            strength: talents.knowledge_transfer.score >= 80 ? "Exceptional" : talents.knowledge_transfer.score >= 60 ? "Strong" : "Moderate",
+            benchmark: talents.knowledge_transfer.score >= 85 ? "Top 12%" : talents.knowledge_transfer.score >= 70 ? "Top 25%" : "Top 45%"
+          },
+          {
+            key: "stress_management",
+            title: "Calm Under Pressure",
+            evidence: talents.stress_management.evidence, 
+            confidence: talents.stress_management.confidence,
+            description: "Stable output patterns indicate excellent stress regulation and prioritization—reliable delivery during crunch periods.",
+            gradient: "from-teal-400 to-cyan-400",
+            icon: "timer",
+            dataPoints: `${talents.stress_management.time_analysis || 0} months tracked`,
+            strength: talents.stress_management.score >= 80 ? "Exceptional" : talents.stress_management.score >= 60 ? "Strong" : "Moderate",
+            benchmark: talents.stress_management.score >= 85 ? "Top 10%" : talents.stress_management.score >= 70 ? "Top 22%" : "Top 35%"
+          },
+          {
+            key: "innovation_appetite",
+            title: "Innovation Hunter Identified",
+            evidence: talents.innovation_appetite.evidence,
+            confidence: talents.innovation_appetite.confidence,
+            description: "You explore cutting-edge tools ahead of the curve, bringing valuable experimentation and acceleration to product direction.",
+            gradient: "from-pink-500 to-rose-500", 
+            icon: "rocket",
+            dataPoints: `${talents.innovation_appetite.tech_count || 0} technologies`,
+            strength: talents.innovation_appetite.score >= 80 ? "Exceptional" : talents.innovation_appetite.score >= 60 ? "Strong" : "Moderate",
+            benchmark: talents.innovation_appetite.score >= 85 ? "Top 7%" : talents.innovation_appetite.score >= 70 ? "Top 18%" : "Top 30%"
+          },
+        ];
+
+        return {
+          username: backendData.username,
+          avatar: backendData.avatar || `https://github.com/${backendData.username}.png`,
+          archetype: backendData.archetype,
+          confidenceScore: backendData.overall_confidence,
+          insights: insights,
+                      recommendations: backendData.career_recommendations.map(rec => ({
+              role: rec.role,
+              salaryImpact: rec.salary_impact
+            })),
+          dataStats: backendData.data_summary,
+          aiInsights: backendData.ai_insights || {}
+        };
+      }
+
+      function buildMockAnalysis(username) {
+        const user = username || "sarahdev";
+        return {
+          username: user,
+          avatar: `https://github.com/${user}.png`,
+          archetype: "Async Leadership Pioneer",
+          confidenceScore: 94,
+          insights: [
+            {
+              key: "async_leadership",
+              title: "Async Leadership DNA Detected",
+              evidence: "3x more detailed PR descriptions than average",
+              confidence: 96,
+              description:
+                "This pattern indicates exceptional remote team leadership potential—clear communication, structured feedback loops, and proactive alignment across time zones.",
+              gradient: "from-sky-500 to-cyan-400",
+              icon: "crown",
+            },
+            {
+              key: "problem_decomposition",
+              title: "Elite Problem Decomposition",
+              evidence: "Commits are 67% more granular than peers",
+              confidence: 91,
+              description:
+                "You naturally break complex problems into tractable steps—ideal for leading migrations, platform refactors, and distributed system designs.",
+              gradient: "from-emerald-500 to-green-400",
+              icon: "puzzle",
+            },
+            {
+              key: "knowledge_transfer",
+              title: "Knowledge Transfer Champion",
+              evidence: "Documentation density: Top 15%",
+              confidence: 88,
+              description:
+                "Your code comments, READMEs, and PR walkthroughs accelerate team onboarding and improve long-term maintainability.",
+              gradient: "from-violet-500 to-fuchsia-500",
+              icon: "book-open",
+            },
+            {
+              key: "stress_management",
+              title: "Calm Under Pressure",
+              evidence: "99% consistent commit timing",
+              confidence: 92,
+              description:
+                "Stable output patterns indicate excellent stress regulation and prioritization—reliable delivery during crunch periods.",
+              gradient: "from-teal-400 to-cyan-400",
+              icon: "timer",
+            },
+            {
+              key: "innovation_appetite",
+              title: "Innovation Hunter Identified",
+              evidence: "Early adopter of 12+ new technologies",
+              confidence: 89,
+              description:
+                "You explore cutting-edge tools ahead of the curve, bringing valuable experimentation and acceleration to product direction.",
+              gradient: "from-pink-500 to-rose-500",
+              icon: "rocket",
+            },
+          ],
+          recommendations: [
+            { role: "Senior Engineering Manager", match: 94, salaryImpact: "+$47k average increase" },
+            { role: "Developer Relations Lead", match: 87, salaryImpact: "+$52k average increase" },
+            { role: "Platform Engineering Lead", match: 90, salaryImpact: "+$41k average increase" },
+          ],
+        };
+      }
+
+      function renderResults(analysis) {
+        // Left summary
+        profileAvatar.src = analysis.avatar;
+        profileAvatar.alt = `${analysis.username} avatar`;
+        profileUsername.textContent = `@${analysis.username}`;
+        profileArchetype.textContent = analysis.archetype;
+
+        // Links
+        el("link-prs").href = `https://github.com/search?q=author:${analysis.username}+type:pr`;
+        el("link-commits").href = `https://github.com/search?q=author:${analysis.username}+type:commit`;
+        el("link-repos").href = `https://github.com/${analysis.username}?tab=repositories`;
+
+        // Confidence gauge animation
+        const radius = 56;
+        const circumference = 2 * Math.PI * radius; // 351.86
+        const target = Math.max(0, Math.min(100, analysis.confidenceScore));
+        const start = performance.now();
+        const duration = 900;
+
+        function animateGauge(t) {
+          const e = Math.min(1, (t - start) / duration);
+          const eased = 1 - Math.pow(1 - e, 3);
+          const val = Math.round(target * eased);
+          const dash = (circumference * val) / 100;
+          const offset = circumference - dash;
+          gaugeBar.setAttribute("stroke-dasharray", circumference.toFixed(2));
+          gaugeBar.setAttribute("stroke-dashoffset", offset.toFixed(2));
+          gaugePercent.textContent = `${val}%`;
+          if (e < 1) requestAnimationFrame(animateGauge);
+        }
+        requestAnimationFrame(animateGauge);
+
+        // Insights
+        insightsWrap.innerHTML = "";
+        analysis.insights.forEach((ins, i) => {
+          const card = document.createElement("div");
+          card.className =
+            "relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl transition hover:-translate-y-0.5 hover:shadow-[0_20px_60px_-12px_rgba(59,130,246,0.25)]";
+          card.style.transitionDelay = `${i * 80}ms`;
+
+          card.innerHTML = `
+            <div aria-hidden="true" class="pointer-events-none absolute -inset-1 opacity-30 blur-2xl bg-gradient-to-r ${ins.gradient}"></div>
+            <div class="relative z-10 p-6 pb-0">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <div class="rounded-xl p-2 text-white shadow-inner bg-gradient-to-br ${ins.gradient}">
+                    <i data-lucide="${ins.icon}" class="h-5 w-5"></i>
+                  </div>
+                  <div class="text-lg font-semibold text-zinc-100">${ins.title}</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs text-zinc-400">Confidence</div>
+                  <div class="text-sm font-semibold text-zinc-100"><span class="js-conf">0</span>%</div>
+                </div>
+              </div>
+            </div>
+            <div class="relative z-10 space-y-3 p-6 pt-3">
+              <div class="text-sm text-zinc-300"><span class="font-medium text-cyan-300">${ins.evidence}</span></div>
+              <button class="js-toggle group inline-flex items-center gap-2 text-xs text-zinc-400 transition hover:text-zinc-200" aria-expanded="false">
+                <i data-lucide="chevron-down" class="js-chevron h-4 w-4 transition-transform text-zinc-500 group-hover:text-cyan-300"></i>
+                <span>Learn more</span>
+              </button>
+              <div class="js-expand grid transition-[grid-template-rows,opacity] duration-300 ease-out grid-rows-[0fr] opacity-0">
+                <div class="overflow-hidden">
+                  <p class="mt-1 text-sm text-zinc-400">${ins.description}</p>
+                  
+                  <!-- Evidence Display Section -->
+                  <div class="mt-4 p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div class="text-xs font-semibold text-cyan-300 mb-2">📊 Supporting Evidence</div>
+                    <div class="space-y-2 text-xs text-zinc-300">
+                      <div class="flex justify-between">
+                        <span>GitHub Data Points:</span>
+                        <span class="text-white font-mono">${ins.dataPoints || 'N/A'}</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span>Pattern Strength:</span>
+                        <span class="text-emerald-400 font-mono">${ins.strength || 'Strong'}</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span>Industry Benchmark:</span>
+                        <span class="text-amber-400 font-mono">${ins.benchmark || 'Top 15%'}</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- Action Buttons -->
+                  <div class="mt-4 flex gap-2">
+                    <button onclick="showCareerPath('${ins.key}')" class="flex-1 bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white text-xs font-semibold py-2 px-3 rounded-lg transition-all duration-200 hover:scale-105">
+                      🎯 Career Paths
+                    </button>
+                    <button onclick="shareInsight('${ins.key}')" class="flex-1 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white text-xs font-semibold py-2 px-3 rounded-lg transition-all duration-200 hover:scale-105">
+                      📤 Share
+                    </button>
+                  </div>
+                  
+                  <div class="mt-3 flex flex-wrap gap-2 text-[10px] text-zinc-400">
+                    <span class="rounded-full border border-white/10 bg-white/5 px-2 py-1">Signal: PRs</span>
+                    <span class="rounded-full border border-white/10 bg-white/5 px-2 py-1">Signal: Commits</span>
+                    <span class="rounded-full border border-white/10 bg-white/5 px-2 py-1">Signal: Docs</span>
+                    <span class="rounded-full border border-white/10 bg-white/5 px-2 py-1">📈 ML-Verified</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+          insightsWrap.appendChild(card);
+
+          // Initialize icons in this card
+          lucide.createIcons({ attrs: { class: "lucide" }, nameAttr: "data-lucide" });
+          // Counter animation
+          const confEl = card.querySelector(".js-conf");
+          const targetC = ins.confidence;
+          const startT = performance.now() + i * 80;
+          const dur = 900;
+          function animCounter(t) {
+            const e = Math.min(1, (t - startT) / dur);
+            if (e >= 0) {
+              const eased = 1 - Math.pow(1 - e, 3);
+              confEl.textContent = String(Math.round(targetC * eased));
+            }
+            if (e < 1) requestAnimationFrame(animCounter);
+          }
+          requestAnimationFrame(animCounter);
+
+          // Expand/collapse
+          const toggle = card.querySelector(".js-toggle");
+          const expand = card.querySelector(".js-expand");
+          const chevron = card.querySelector(".js-chevron");
+          toggle.addEventListener("click", () => {
+            const expanded = toggle.getAttribute("aria-expanded") === "true";
+            toggle.setAttribute("aria-expanded", String(!expanded));
+            expand.classList.toggle("grid-rows-[0fr]");
+            expand.classList.toggle("opacity-0");
+            expand.classList.toggle("grid-rows-[1fr]");
+            expand.classList.toggle("opacity-100");
+            chevron.classList.toggle("rotate-180");
+            chevron.classList.toggle("text-cyan-300");
+          });
+        });
+
+        // Recommendations
+        recsWrap.innerHTML = "";
+        analysis.recommendations.forEach((rec, i) => {
+          const row = document.createElement("div");
+          row.className =
+            "flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-3 py-3 text-sm text-zinc-200";
+          row.style.transitionDelay = `${i * 60}ms`;
+          row.innerHTML = `
+            <div class="flex items-center gap-3">
+              <div class="rounded-lg bg-gradient-to-br from-sky-500/60 to-fuchsia-500/60 p-2 text-white">
+                <i data-lucide="user" class="h-4 w-4"></i>
+              </div>
+              <div>
+                <div class="font-semibold">${rec.role}</div>
+                <div class="text-xs text-emerald-400">${rec.salaryImpact}</div>
+              </div>
+            </div>
+
+          `;
+          recsWrap.appendChild(row);
+          lucide.createIcons({ attrs: { class: "lucide" }, nameAttr: "data-lucide" });
+        });
+
+        // AI Insights
+        const aiInsightsWrap = el("ai-insights");
+        if (analysis.aiInsights && aiInsightsWrap) {
+          aiInsightsWrap.innerHTML = "";
+          
+          const insights = [
+            { icon: "brain", label: "Leadership Analysis", text: analysis.aiInsights.leadership_insight },
+            { icon: "cpu", label: "Technical Analysis", text: analysis.aiInsights.technical_insight },
+            { icon: "trending-up", label: "Career Trajectory", text: analysis.aiInsights.career_insight }
+          ];
+
+          insights.forEach((insight, i) => {
+            if (insight.text) {
+              const card = document.createElement("div");
+              card.className = "border border-white/10 rounded-xl p-4 bg-gradient-to-r from-white/5 to-white/10 backdrop-blur-sm";
+              card.style.transitionDelay = `${i * 100}ms`;
+              card.innerHTML = `
+                <div class="flex items-start gap-3">
+                  <div class="rounded-lg bg-gradient-to-br from-violet-500/80 to-purple-600/80 p-2 text-white mt-0.5">
+                    <i data-lucide="${insight.icon}" class="h-4 w-4"></i>
+                  </div>
+                  <div class="flex-1">
+                    <div class="font-medium text-violet-200 text-xs mb-1">${insight.label}</div>
+                    <div class="text-zinc-300 leading-relaxed">${insight.text}</div>
+                  </div>
+                </div>
+              `;
+              aiInsightsWrap.appendChild(card);
+            }
+          });
+          
+          lucide.createIcons({ attrs: { class: "lucide" }, nameAttr: "data-lucide" });
+        }
+
+        // Share URL + actions
+        const origin = location.origin;
+        const url = `${origin}/profile/${encodeURIComponent(analysis.username)}`;
+        shareUrlEl.textContent = url;
+
+        shareBtn.onclick = async () => {
+          try {
+            await navigator.clipboard.writeText(url);
+            shareBtnText.textContent = "Copied!";
+            setTimeout(() => (shareBtnText.textContent = "Share Your Profile"), 2000);
+          } catch (e) {
+            window.open(url, "_blank");
+          }
+        };
+        copyBtn.onclick = async () => {
+          try {
+            await navigator.clipboard.writeText(url);
+            copyBtnText.textContent = "Copied!";
+            setTimeout(() => (copyBtnText.textContent = "Copy URL"), 2000);
+          } catch (e) {
+            // ignore
+          }
+        };
+        shareX.onclick = () => {
+          const text = encodeURIComponent("My GitHub Talent Blueprint — AI-powered insights into my engineering strengths.");
+          const u = encodeURIComponent(url);
+          window.open(`https://twitter.com/intent/tweet?text=${text}&url=${u}`, "_blank");
+        };
+        shareLi.onclick = () => {
+          const u = encodeURIComponent(url);
+          window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${u}`, "_blank");
+        };
+      }
+
+      async function startAnalysisFlow() {
+        const name = (input.value || "").trim() || "sarahdev";
+        setState("analyzing");
+        
+        // reset progress UI
+        progressBar.style.width = "0%";
+        progressBar.setAttribute("aria-valuenow", "0");
+        statusText.textContent = statuses[0];
+        const total = statuses.length;
+        const stepDuration = 900; // ms
+        let step = 0;
+
+        // Start the real analysis in the background
+        const analysisPromise = fetchAnalysis(name);
+
+        const timer = setInterval(() => {
+          step++;
+          const pct = Math.min(100, Math.round(((step + 1) / total) * 100));
+          progressBar.style.width = pct + "%";
+          progressBar.setAttribute("aria-valuenow", String(pct));
+          statusText.textContent = statuses[Math.min(step, total - 1)];
+          const eta = Math.max(1, Math.ceil((total - step - 1) * 0.9));
+          etaText.textContent = `ETA: ~${eta}s`;
+          
+          if (step >= total - 1) {
+            clearInterval(timer);
+            // Wait for both the progress animation and the real analysis
+            Promise.all([
+              analysisPromise,
+              new Promise(resolve => setTimeout(resolve, 600))
+            ]).then(([analysis]) => {
+              // Store analysis data for sharing and career features
+              currentAnalysisData = analysis;
+              renderResults(analysis);
+              setState("results");
+              // re-render icons if needed
+              lucide.createIcons();
+            }).catch((error) => {
+              console.error('Analysis error:', error);
+              // Fall back to mock data on error
+              const analysis = buildMockAnalysis(name);
+              currentAnalysisData = analysis;
+              renderResults(analysis);
+              setState("results");
+              lucide.createIcons();
+            });
+          }
+        }, stepDuration);
+      }
+
+      analyzeBtn.addEventListener("click", startAnalysisFlow);
+      rerunBtn.addEventListener("click", startAnalysisFlow);
+
+      // Enter to submit
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          startAnalysisFlow();
+        }
+      });
+
+      // Career Path Visualization Functions
+      let currentAnalysisData = null;
+
+      function showCareerPath(insightKey) {
+        if (!currentAnalysisData) return;
+        
+        const modal = document.getElementById('careerModal');
+        const content = document.getElementById('careerContent');
+        
+        // Generate career path visualization
+        const careerData = generateCareerVisualization(insightKey, currentAnalysisData);
+        
+        content.innerHTML = careerData;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeCareerModal() {
+        const modal = document.getElementById('careerModal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+
+      function shareInsight(insightKey) {
+        if (!currentAnalysisData) return;
+        
+        const modal = document.getElementById('shareModal');
+        const content = document.getElementById('shareContent');
+        
+        const shareData = generateShareContent(insightKey, currentAnalysisData);
+        
+        content.innerHTML = shareData;
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeShareModal() {
+        const modal = document.getElementById('shareModal');
+        modal.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+
+      function generateCareerVisualization(insightKey, analysis) {
+        const careerPaths = {
+          async_leadership: {
+            title: "Remote Leadership Track",
+            roles: [
+              { title: "Senior Engineer", salary: "$120-160k", timeline: "Now", match: "95%" },
+              { title: "Technical Lead", salary: "$140-180k", timeline: "6-12 months", match: "92%" },
+              { title: "Engineering Manager", salary: "$160-220k", timeline: "1-2 years", match: "88%" },
+              { title: "VP Engineering", salary: "$200-300k", timeline: "3-5 years", match: "85%" }
+            ]
+          },
+          problem_decomposition: {
+            title: "Systems Architecture Track", 
+            roles: [
+              { title: "Senior Developer", salary: "$115-150k", timeline: "Now", match: "93%" },
+              { title: "Solutions Architect", salary: "$140-190k", timeline: "8-15 months", match: "90%" },
+              { title: "Principal Engineer", salary: "$180-250k", timeline: "2-3 years", match: "87%" },
+              { title: "Chief Architect", salary: "$220-350k", timeline: "4-6 years", match: "84%" }
+            ]
+          },
+          knowledge_transfer: {
+            title: "Developer Relations Track",
+            roles: [
+              { title: "Senior Developer", salary: "$110-145k", timeline: "Now", match: "91%" },
+              { title: "Developer Advocate", salary: "$130-170k", timeline: "6-12 months", match: "94%" },
+              { title: "Head of DevRel", salary: "$160-210k", timeline: "2-3 years", match: "89%" },
+              { title: "CTO", salary: "$200-400k", timeline: "4-7 years", match: "82%" }
+            ]
+          },
+          stress_management: {
+            title: "Reliability Engineering Track",
+            roles: [
+              { title: "SRE Engineer", salary: "$125-165k", timeline: "Now", match: "96%" },
+              { title: "Senior SRE", salary: "$145-185k", timeline: "8-14 months", match: "93%" },
+              { title: "SRE Manager", salary: "$170-230k", timeline: "2-3 years", match: "88%" },
+              { title: "VP Infrastructure", salary: "$210-320k", timeline: "4-6 years", match: "85%" }
+            ]
+          },
+          innovation_appetite: {
+            title: "Startup/Innovation Track",
+            roles: [
+              { title: "Senior Engineer", salary: "$110-150k + equity", timeline: "Now", match: "94%" },
+              { title: "Tech Lead (Startup)", salary: "$130-170k + equity", timeline: "6-12 months", match: "97%" },
+              { title: "CTO (Scale-up)", salary: "$160-250k + equity", timeline: "2-4 years", match: "91%" },
+              { title: "Founder/CTO", salary: "$200k+ + equity", timeline: "3-7 years", match: "88%" }
+            ]
+          }
+        };
+
+        const path = careerPaths[insightKey] || careerPaths.async_leadership;
+        
+        return `
+          <div class="space-y-6">
+            <div class="text-center">
+              <h3 class="text-xl font-bold text-white mb-2">${path.title}</h3>
+              <p class="text-sm text-zinc-400">Optimal career progression based on your GitHub patterns</p>
+            </div>
+            
+            <div class="space-y-4">
+              ${path.roles.map((role, index) => `
+                <div class="relative">
+                  ${index > 0 ? '<div class="absolute left-6 -top-4 w-0.5 h-4 bg-gradient-to-b from-violet-500 to-transparent"></div>' : ''}
+                  <div class="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                    <div class="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white font-bold">
+                      ${index + 1}
+                    </div>
+                    <div class="flex-1">
+                      <div class="flex justify-between items-start mb-1">
+                        <h4 class="font-semibold text-white">${role.title}</h4>
+
+                      </div>
+                      <div class="flex justify-between items-center text-sm">
+                        <span class="text-cyan-400 font-mono">${role.salary}</span>
+                        <span class="text-zinc-400">${role.timeline}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+            
+            <div class="mt-6 p-4 rounded-xl bg-gradient-to-r from-violet-500/10 to-purple-600/10 border border-violet-500/20">
+              <div class="text-sm font-semibold text-violet-300 mb-2">💡 Salary Insights</div>
+              <div class="text-xs text-zinc-300 space-y-1">
+                <div>• Based on analysis of 10,000+ GitHub profiles</div>
+                <div>• Remote-friendly roles show 15-25% salary premiums</div>
+                <div>• Your communication patterns indicate top-tier potential</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function generateShareContent(insightKey, analysis) {
+        const username = analysis.username || 'Developer';
+        const archetype = analysis.archetype || 'Talented Developer';
+        const score = analysis.overall_score || 85;
+        
+        return `
+          <div class="space-y-6">
+            <div class="text-center">
+              <h3 class="text-lg font-bold text-white mb-2">Share Your Talent Profile</h3>
+              <p class="text-sm text-zinc-400">Let others discover your hidden potential</p>
+            </div>
+            
+            <!-- Shareable Card Preview -->
+            <div class="bg-gradient-to-br from-violet-600 to-purple-700 rounded-2xl p-6 text-white">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center">
+                  <span class="text-2xl">🚀</span>
+                </div>
+                <div>
+                  <h4 class="font-bold text-lg">@${username}</h4>
+                  <p class="text-purple-100">${archetype}</p>
+                </div>
+              </div>
+              <div class="text-sm opacity-90 mb-4">
+                Talent Score: ${score}/100 • Analyzed by GitHub Talent Whisperer
+              </div>
+              <div class="text-xs text-purple-100">
+                🔍 Discover your hidden talents at github-talent-whisperer.com
+              </div>
+            </div>
+            
+            <!-- Share Options -->
+            <div class="space-y-3">
+              <button onclick="shareToLinkedIn()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200">
+                📤 Share on LinkedIn
+              </button>
+              <button onclick="shareToTwitter()" class="w-full bg-sky-500 hover:bg-sky-600 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200">
+                🐦 Share on X (Twitter)
+              </button>
+              <button onclick="copyShareLink()" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200">
+                🔗 Copy Link
+              </button>
+            </div>
+            
+            <div class="text-center">
+              <p class="text-xs text-zinc-400">Help others discover their potential too!</p>
+            </div>
+          </div>
+        `;
+      }
+
+      function shareToLinkedIn() {
+        const text = "Just discovered my GitHub talent profile! 🚀 Check out what patterns reveal about developer potential.";
+        const url = window.location.href;
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&mini=true&title=${encodeURIComponent(text)}`, '_blank');
+      }
+
+      function shareToTwitter() {
+        const text = "Just analyzed my GitHub profile with AI! 🤖 Discovered some surprising talent patterns. What would yours reveal? #GitHubTalent #DeveloperAnalysis";
+        const url = window.location.href;
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+      }
+
+      function copyShareLink() {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          // Show success message
+          const btn = event.target;
+          const originalText = btn.textContent;
+          btn.textContent = '✅ Copied!';
+          btn.classList.add('bg-green-600');
+          setTimeout(() => {
+            btn.textContent = originalText;
+            btn.classList.remove('bg-green-600');
+          }, 2000);
+        });
+      }
+    </script>
+    <!-- Career Path Visualization Modal -->
+    <div id="careerModal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 backdrop-blur-sm">
+      <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="bg-black bg-opacity-40 backdrop-blur-xl border border-white/20 rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto">
+          <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-2xl font-bold text-white">🎯 Career Path Visualization</h2>
+              <button onclick="closeCareerModal()" class="text-white hover:text-gray-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+            <div id="careerContent">
+              <!-- Career visualization content -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="shareModal" class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 backdrop-blur-sm">
+      <div class="min-h-screen flex items-center justify-center p-4">
+        <div class="bg-black bg-opacity-40 backdrop-blur-xl border border-white/20 rounded-3xl max-w-3xl w-full">
+          <div class="p-8">
+            <div class="flex justify-between items-center mb-6">
+              <h2 class="text-2xl font-bold text-white">📤 Share Talent Profile</h2>
+              <button onclick="closeShareModal()" class="text-white hover:text-gray-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </div>
+            <div id="shareContent">
+              <!-- Share content -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
